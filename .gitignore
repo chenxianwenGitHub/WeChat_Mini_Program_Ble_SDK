@@ -1,0 +1,53 @@
+# --- 开发工具 & IDE 相关 ---
+.idea/          # JetBrains IDE 配置
+.vscode/        # VS Code 配置
+*.suo           # Visual Studio 用户选项
+*.ntvs*         # NTVS (Node.js Tools) 生成文件
+*.njsproj       # Node.js 项目文件
+*.sln           # Visual Studio 解决方案
+*.sw?           # 编辑器临时文件 (如 Vim)
+
+# --- 操作系统生成文件 ---
+.DS_Store       # macOS 目录设置
+Thumbs.db       # Windows 缩略图缓存
+ehthumbs*.db    # Windows 文件夹缩略图
+Desktop.ini     # Windows 文件夹自定义设置
+
+# --- 依赖管理 ---
+node_modules/   # npm 依赖目录
+jspm_packages/  # JSPM 包管理目录
+bower_components/ # Bower 组件
+
+# --- 日志 & 调试 ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log           # 通用日志文件
+
+# --- 编译 & 构建输出 ---
+dist/           # 打包输出目录
+build/          # 构建生成文件
+unpackage/      # 小程序打包临时目录 (如 HBuilderX)
+*.wxvpkg        # 微信开发者工具临时包
+
+# --- 环境配置 ---
+.env.local      # 本地环境变量
+.env.development
+.env.test
+.env.production
+
+# --- 版本控制遗留 ---
+.svn/           # SVN 元数据目录
+*.svn
+
+# --- 微信小程序特定文件 ---
+project.private.config.json  # 个性化项目配置（可能含敏感信息）
+sitemap.json    # 自动生成的 sitemap 配置（部分工具会覆盖）
+
+# --- 测试相关 ---
+coverage/       # 测试覆盖率报告
+.nyc_output/    # NYC 测试覆盖率数据
+
+# --- 其他临时文件 ---
+*.tmp           # 临时文件
+*.bak           # 备份文件

@@ -1,0 +1,70 @@
+<view>
+  <view class="box-btn">
+    <button catch:tap="ReadAlarmClockDataManager">读取文字闹钟</button>
+  </view>
+  <view style="margin: 50rpx 30rpx;">
+    <view class="ItemInput">
+      <view>闹钟ID：</view>
+      <view><input style="background-color: aliceblue; padding: 15rpx;" bindinput="getId" type="text" placeholder="填写闹钟ID" /></view>
+    </view>
+    <view class="ItemInput">
+      <view>闹钟时间：</view>
+      <picker mode="time" value="{{startTime}}" start="00:00" end="23:59" bindchange="bindStartTimeChange">
+        <view class="picker">
+          {{startTime}}
+        </view>
+      </picker>
+    </view>
+    <view class="ItemInput">
+      <view>是否开启：</view>
+      <switch checked="{{alarmSwitch}}" bindchange="getalarmSwitch" />
+    </view>
+  </view>
+  <view class="box-btn">
+    <button catch:tap="SetAlarmClockDataManager">设置文字闹钟</button>
+  </view>
+
+  <view style="margin: 50rpx 30rpx;">
+    <view class="ItemInput">
+      <view>删除闹钟的ID：</view>
+      <view><input style="background-color: aliceblue; padding: 15rpx;" bindinput="deleteAlId" type="text" placeholder="删除闹钟的ID" /></view>
+    </view>
+
+  </view>
+  <view class="box-btn">
+    <button catch:tap="deleteAlarmClockDataManager">删除文字闹钟</button>
+  </view>
+  <view style="margin: 50rpx 30rpx;">
+    <view class="ItemInput">
+      <view>闹钟ID：</view>
+      <view><input style="background-color: aliceblue; padding: 15rpx;" bindinput="UPgetId" type="text" placeholder="填写闹钟ID" /></view>
+    </view>
+    <view class="ItemInput">
+      <view>闹钟时间：</view>
+      <picker mode="time" value="{{UPstartTime}}" start="00:00" end="23:59" bindchange="UPbindStartTimeChange">
+        <view class="picker">
+          {{UPstartTime}}
+        </view>
+      </picker>
+    </view>
+    <view class="ItemInput">
+      <view>是否开启：</view>
+      <switch checked="{{UPalarmSwitch}}" bindchange="UPgetalarmSwitch" />
+    </view>
+  </view>
+
+  <view class="box-btn">
+    <button catch:tap="updateAlarmClockDataManager">修改文字闹钟</button>
+  </view>
+
+  <view style="margin: 50rpx 20rpx;">
+
+    <view class="Item" style="border-bottom: 1px solid rgb(214, 214, 214); margin-bottom: 30rpx;" wx:for="{{alarmList}}">
+      <view>闹钟ID：{{item.alarmId}}</view>
+      <view>闹钟时间：{{item.time}}</view>
+      <view>闹钟开关：{{item.alarmSwitch}}</view>
+    </view>
+
+  </view>
+
+</view>
