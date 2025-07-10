@@ -20,6 +20,8 @@ Page({
     veepooBle.veepooWeiXinSDKRawDataShowStatus(data)
   },
 
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -60,7 +62,7 @@ Page({
             let date = item.date.split("-");
             // 获取7小时rr50值
             if (Number(date[3]) < 7) {
-              console.log("item.rr50=>", item.rr50)
+              // console.log("item.rr50=>", item.rr50)
               rr50Array.push(...item.rr50)
             }
             arr.push(obj)

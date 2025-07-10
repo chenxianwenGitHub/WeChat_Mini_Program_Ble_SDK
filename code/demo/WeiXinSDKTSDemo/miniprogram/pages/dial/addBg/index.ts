@@ -10,7 +10,8 @@ Page({
   data: {
     isTransfering: false,
     transferProgressText: "",
-    imgs: "../../../image/dial_icon3_main.png"
+    imgs: "../../../image/dial_icon3_main.png",
+    fileName:""
   },
   devScreenWidth: 240,
   devScreenHeight: 280,
@@ -204,6 +205,7 @@ Page({
   //     }
   //   })
   // },
+
   clickCancelTransfer() {
     RCSPOpWatchDial?.cancelAddWatchResourseFile()
   },
@@ -334,6 +336,9 @@ Page({
           })
         }
       }
+
+
+      console.log("fileName===>",fileName)
       RCSPOpWatchDial?.addWatchResourseFile(data.data2, fileName, lastModifyTime, true, transferCallback).then((res) => {
         self.setData({
           fileName

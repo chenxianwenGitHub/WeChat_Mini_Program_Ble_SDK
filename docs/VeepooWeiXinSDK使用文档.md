@@ -286,6 +286,65 @@ console.log("e=>",e)
 
 
 
+### 切换设备服务
+
+##### 前提
+
+蓝牙设备已连接
+
+##### 接口
+
+```js
+veepooWeiXinSDKHandoverServiceManager
+```
+
+##### 使用示例
+
+```js
+import { veepooBle} from '../../miniprogram_dist/index'
+ veepooBle.veepooWeiXinSDKHandoverServiceManager({ deviceId: '设备id' }, (res: any) => {
+          console.log("服务切换res=>", res)
+ });
+
+```
+
+##### 回调
+
+切换设备服务成功状态
+
+------
+
+
+
+### 重连设备
+
+##### 前提
+
+蓝牙设备已连接
+
+##### 接口
+
+```js
+veepooWeiXinSDKBleReconnectDeviceManager
+```
+
+##### 使用示例
+
+```js
+import { veepooBle} from '../../miniprogram_dist/index'
+veepooBle.veepooWeiXinSDKBleReconnectDeviceManager({ deviceId: '设备id' }, (res: any) => {
+   console.log("重连状态=>", res)
+ });
+```
+
+##### 回调
+
+设备重连状态
+
+------
+
+
+
 ### 封装蓝牙的相关方法
 
 ```js
@@ -304,11 +363,18 @@ console.log("e=>",e)
   veepooWeiXinSDKloseBluetoothAdapterManager, //断开蓝牙
   veepooWeiXinSDKBLEConnectionStateChangeManager, // 蓝牙连接状态
   veepooWeiXinSDKStartScanDeviceAndReceiveScanningDevice, // 获取配置，蓝牙初始化，扫描蓝牙等合集
-  veepooWeiXinSDKBleConnectionServicesCharacteristicsNotifyManager, // 连接蓝牙，获取蓝牙服务，获取特征值等集合
+  veepooWeiXinSDKBleConnectionServicesCharacteristicsNotifyManager, // 链接蓝牙，获取蓝牙服务，获取特征值等集合
   veepooWeiXinSDKNotifyMonitorValueChange, // 订阅信息,监听数据返回等集合
+  veepooWeiXinSDKWriteBLECharacteristicValueLengthManager, // 写入长度无限
   veepooWeiXinSDKGetConnectedBleDeviceManager, // 获取已连接的蓝牙设备
+  veepooWeiXinSDKUpdateECGServiceManager, // 切换ecg多导服务
   veepooWeiXinSDKUpdateDeviceDialServiceManager, // 切换ui服务
+  veepooWeiXinSDKWriteDeviceDialBLECharacteristicValueManager, // 写入ui服务数据
   veepooWeiXinSDKNotifyECGValueChange, // 监听ECG测量特征
+  veepooWeiXinSDKConnectionDevice, // 进行蓝牙连接，A1认证
+  veepooWeiXinSDKRawDataShowStatus, // 原始数据显示
+  veepooWeiXinSDKHandoverServiceManager, // 切换服务
+  veepooWeiXinSDKBleReconnectDeviceManager, // 蓝牙重连
 ```
 
 

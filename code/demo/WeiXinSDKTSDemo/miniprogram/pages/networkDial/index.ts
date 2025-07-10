@@ -15,6 +15,7 @@ Page({
     fileData: {},
     transferProgressText: '',
     dialList: {},// 设备表盘列表
+    getIndex:1,// 请求的页数
 
   },
 
@@ -87,6 +88,27 @@ Page({
     veepooFeature.veepooSendReadCustomBackgroundDailManager(data);
   },
 
+  // 添加获取页数
+  addGetIndex(){
+
+    this.setData({
+      getIndex:this.data.getIndex + 1
+    })
+    this.getData();
+  },
+
+  // 减少获取页数
+  removeGetIndex(){
+    if(this.data.getIndex != 1){
+      this.setData({
+        getIndex:this.data.getIndex - 1
+      })
+    }
+
+    this.getData();
+
+  },
+
   // 接口
   getData() {
     let self = this;
@@ -97,12 +119,18 @@ Page({
     // dialInfo: { "dataAddress": dialInfo.dataAddress, "writeDataLength": dialInfo.writeDataLength, "binProtocol": dialInfo.binProtocol, "dataUseType": dialInfo.dataUseType, "dialShape": dialInfo.dialShape, "ImageId": dialInfo.ImageId },
     console.log('这个时获取的dailInfo==>', dialInfo)
     let data = {
-      // version: "00.77.02.05-5097",
-      version: "01.05.02.00-5376",
-      dialInfo: { "dataAddress": dialInfo.dataAddress, "writeDataLength": dialInfo.writeDataLength, "binProtocol": dialInfo.binProtocol, "dataUseType": dialInfo.dataUseType, "dialShape": dialInfo.dialShape, "ImageId": dialInfo.ImageId },
-      pageIndex: 1,// 当前页数
+      version: "00.77.05.00-5097",
+      // version: "01.05.02.00-5376",
+      // version: "01.05.02.00-5840",
+      // dialInfo: { "dataAddress": dialInfo.dataAddress, "writeDataLength": dialInfo.writeDataLength, "binProtocol": dialInfo.binProtocol, "dataUseType": dialInfo.dataUseType, "dialShape": dialInfo.dialShape, "ImageId": dialInfo.ImageId },
+      dialInfo: { "dataAddress": 0, "writeDataLength": 614733, "binProtocol": 2, "dataUseType": 1, "dialShape": 56, "ImageId": 0 },
+      pageIndex: this.data.getIndex,// 当前页数
       pageSize: 24,// 数据条数
     }
+
+
+
+    
     let resut = veepooFeature.veepooGetNetworDialManager(data);
     resut.then((result: any) => {
       console.log("resut==>", result.data)
@@ -311,4 +339,8 @@ Page({
       }
     })
   },
-})
+});
+
+
+
+

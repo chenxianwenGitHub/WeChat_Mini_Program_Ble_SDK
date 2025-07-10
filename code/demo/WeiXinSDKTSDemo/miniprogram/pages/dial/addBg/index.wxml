@@ -7,4 +7,5 @@
 <view  class="blue-btn" catchtap="clickCancelTransfer">取消传输</view>
 <view>{{transferProgressText}}</view>
 
+<view>{{fileName}}</view>
 <image src="{{pathImage}}" mode=""/>
