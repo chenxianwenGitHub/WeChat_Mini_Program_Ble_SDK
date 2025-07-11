@@ -16,3 +16,5 @@
 <canvas wx:if="{{stats}}" canvas-id="myCanvas" type="2d" id="myCanvas" style="position:relative;top: 50%;left: 50%;transform: translate(-50%,-50%);width: 290px;height:390px;box-sizing:border-box;"></canvas>
 
 <!-- <image style="padding: 40rpx; background-color: red; position: fixed; top: 20rpx;" src="{{srcImagePath}}" mode=""/> -->
+
+

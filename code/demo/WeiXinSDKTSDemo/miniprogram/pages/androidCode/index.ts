@@ -110,6 +110,8 @@ Page({
     veepooFeature.veepooSendAndroidCodeDataManager(data);
   },
 
+  // 
+
   sendSMS() {
     let self = this;
     let data = {

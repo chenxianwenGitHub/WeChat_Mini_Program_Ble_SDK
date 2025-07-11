@@ -6,9 +6,12 @@ import { BleDataHandler } from '../../jieli_sdk/lib/ble-data-handler';
 import { veepooJLBle } from "../../jieli_sdk/bleInit"
 // const vpJLBle = new veepooJLBle();
 //打印设置
-// 
-// a1 00 00 00 07 e9 01 0e 0f 02 33 00 00 20
 
+let imagePath = 'file:///data/storage/el2/base/haps/entry/files/custom_dial_images/2025430_114654.jpg';
+
+let path = imagePath.split(":")[1]
+
+console.log("path=>", path.substring(2));
 
 // 获取应用实例
 const app = getApp<IAppOption>()
@@ -20,6 +23,14 @@ Component({
     info: {},
     connected: false,
     listDate: [
+      {
+        name: '切换服务',
+        path: 'switchServices'
+      },
+      {
+        name: '蓝牙重连',
+        path: 'Reconnect'
+      },
       {
         name: '波形',
         path: '/pages/waveform/index'
@@ -172,10 +183,10 @@ Component({
         name: 'android编码',
         path: '/pages/androidCode/index'
       },
-      {
-        name: 'UI风格',
-        path: '/pages/uiStyle/index'
-      },
+      // {
+      //   name: 'UI风格',
+      //   path: '/pages/uiStyle/index'
+      // },
       {
         name: '同步时间',
         path: '/pages/syncTime/index'
@@ -200,9 +211,7 @@ Component({
   },
   methods: {
     packRgb(r: any, g: any, b: any) {
-      // 假设r, g, b的值都在0-31之间（因为5位可以表示的最大值是31）
-      // 对于g，我们需要确保它在0-63之间（因为6位可以表示的最大值是63）
-      // 但为了简单起见，这里我们不做输入验证
+
 
       // 构造高位字节
       console.log("(r << 3) & 0xF8)=>", (r << 3) & 0xF8)
@@ -212,7 +221,6 @@ Component({
       // 构造低位字节
       let little = ((g << 5) & 0xe0) | (b & 0x1F); // 注意：在JavaScript中我们左移g 5位以腾出空间
 
-      // 由于JavaScript的位操作符限制在32位，我们实际上返回的是Number类型，但这里的值将符合uint8_t的范围
       return { big, little };
     },
     getF003() {
@@ -315,10 +323,6 @@ Component({
 
 
       }
-
-
-
-
 
       veepooBle.veepooWeiXinSDKStopSearchBleManager(function (e: any) {
         console.log("停止蓝牙搜索=>", e)
@@ -441,6 +445,7 @@ Component({
     // 跳转相关页面
     skipPages(e: any) {
       let path = e.currentTarget.dataset.path;
+      let self = this;
       console.log(path)
       if (path == 'DisconnectBluetooth') {
         veepooFeature.veepooSendDisconnectBluetoothDataManager()
@@ -454,6 +459,37 @@ Component({
         veepooFeature.veepooSendResetDataManager()
         return
       }
+
+      if (path == 'switchServices') {
+
+        // 获取存储的蓝牙信息
+        const device = wx.getStorageSync('bleInfo');
+
+        // 切换服务
+        veepooBle.veepooWeiXinSDKHandoverServiceManager({ deviceId: device.deviceId }, (res: any) => {
+          console.log("服务切换res=>", res)
+        });
+
+        return
+      }
+
+      if (path == "Reconnect") {
+        let item = wx.getStorageSync('bleInfo');
+        veepooBle.veepooWeiXinSDKBleReconnectDeviceManager(item, function (result: any) {
+          console.log('蓝牙重连result=>', result);
+          // 获取当前服务，订阅监听
+          self.notifyMonitorValueChange();
+          // 蓝牙密码核准
+          veepooFeature.veepooBlePasswordCheckManager();
+
+        })
+        return
+      }
+
+
+      // switchServices
+      // Reconnect
+
       wx.navigateTo({
         url: path,
       })

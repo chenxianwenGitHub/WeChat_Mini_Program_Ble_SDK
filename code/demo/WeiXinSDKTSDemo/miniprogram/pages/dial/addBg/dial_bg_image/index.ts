@@ -72,6 +72,7 @@ Page({
         smallDevScreenWidth: e.border[0],
         smallDevScreenHeight: e.border[0]
       })
+
     })
   },
   canvasHeight: 0,
@@ -88,6 +89,8 @@ Page({
       }
     })
   },
+
+  // 获取到的图片load
   imgLoad() {
     const query = wx.createSelectorQuery();
     query.select('#test').boundingClientRect((res) => {
@@ -119,10 +122,11 @@ Page({
     }).exec()
   },
 
+  // 创建图片
   createImage(transfer: { x: number, y: number }) {
     //判断越界
-    const boxMarginHorizontal = (this.canvasWidth - this.boxWidth) / 2//水平边距
-    const boxMarginVertical = (this.canvasHeight - this.boxHeight) / 2//竖直边距
+    const boxMarginHorizontal = (this.canvasWidth - this.boxWidth) / 2; //水平边距
+    const boxMarginVertical = (this.canvasHeight - this.boxHeight) / 2; //竖直边距
     const ctx = wx.createCanvasContext('shareFrends')
     // ctx.restore()
     ctx.scale(this.devScale, this.devScale)
@@ -203,20 +207,20 @@ Page({
     }
   },
   ni: 0,
-  direction: 0,//方向
-  imagePath: '',//图片路径
-  transferOffset: { x: 0, y: 0 },//偏移位置
-  scale: 1,//缩放比例
-  screenWidth: 100,//屏幕宽度
-  multiple: 1,// 计算原图和默认显示的倍数
+  direction: 0, //方向
+  imagePath: '', //图片路径
+  transferOffset: { x: 0, y: 0 }, //偏移位置
+  scale: 1, //缩放比例
+  screenWidth: 100, //屏幕宽度
+  multiple: 1, // 计算原图和默认显示的倍数
   baseWidth: 100, // 图片实际宽度
   baseHeight: 100, // 图片实际高度
   initWidth: 100, // 图片默认显示宽度
   initHeight: 100, // 图片默认显示高度
   scaleWidth: 100, // 图片缩放后的宽度
   scaleHeight: 100, // 图片缩放后的高度
-  boxWidth: 100,//取景框的宽度
-  boxHeight: 100,//取景框的高度
+  boxWidth: 100, // 取景框的宽度
+  boxHeight: 100, // 取景框的高度
   lastTouchDetailArray: new Array<WechatMiniprogram.TouchDetail>(),//上次双指移动的位置
   touchmove(e: WechatMiniprogram.TouchEvent) {
     // console.log("拖动");
@@ -350,6 +354,8 @@ Page({
     this.direction = (this.direction + 1) % 4
     this.createImage(this.transferOffset)
   },
+
+  // 选取图片
   clickSelect() {
     let self = this
     const transfer = this.transferOffset
@@ -565,7 +571,7 @@ Page({
             success: ress => {
               console.log("临时文件路径：", ress);
               // 在这里可以调用上传图片的方法，使用ress.tempFilePath作为上传的图片路径  
-              self.smallData(ress.tempFilePath, arr)
+              self.smallData(ress.tempFilePath, arr);
               // wx.saveImageToPhotosAlbum({
               //   filePath: ress.tempFilePath
               // })

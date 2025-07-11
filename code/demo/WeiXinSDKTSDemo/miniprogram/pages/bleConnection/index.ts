@@ -1,5 +1,9 @@
 // pages/bleConnection/index.ts
 import { veepooBle, veepooFeature } from '../../miniprogram_dist/index'
+
+
+
+
 Page({
 
   /**

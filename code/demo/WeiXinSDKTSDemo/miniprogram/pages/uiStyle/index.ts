@@ -114,13 +114,13 @@ Page({
       timeColor: [r, g, b]
     }
     console.log("value=>", value)
-    veepooFeature.veepooSendSetupCustomBackgroundDialDataManager(value)
+    // veepooFeature.veepooSendSetupCustomBackgroundDialDataManager(value)
   },
   readCustomBackground() {
     let data = {
       type:2
     }
-    veepooFeature.veepooSendReadCustomBackgroundDailManager(data)
+    // veepooFeature.veepooSendReadCustomBackgroundDailManager(data)
   },
   getDialInfo() {
     let self = this;
@@ -139,6 +139,8 @@ Page({
 
     })
   },
+
+  // 
 
   bindPickerChange1: function (e: any) {
     console.log("e=>", e.detail.value)
